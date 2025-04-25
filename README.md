@@ -4,7 +4,7 @@
 
 In your own Hugo site/project directory, add both typo and this theme as git submodules:
 
-```
+```sh
 git submodule add \
   --branch main \
   https://github.com/tomfran/typo.git \
