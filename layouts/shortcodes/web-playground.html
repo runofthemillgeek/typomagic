@@ -1,0 +1,48 @@
+{{- $sections := split .Inner "---*---" -}}
+{{- $html := (strings.TrimSpace (index $sections 0)) -}}
+{{- $css := cond (ge (len $sections) 2) (strings.TrimSpace (index $sections 1)) "" -}}
+{{- $js := cond (eq (len $sections) 3) (strings.TrimSpace (index $sections 2)) "" -}}
+{{-
+$srcDoc := printf `
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    body {
+      font-family: ui-sans-serif, sans-serif;
+    }
+
+    %s
+  </style>
+</head>
+
+<body>%s</body>
+<script>%s</script>
+
+</html>` $css $html $js
+-}}
+
+<div class="web-playground">
+  <div class="code-panes">
+    <div class="code-pane html">
+      <span class="badge html">HTML</span>
+      {{- transform.Highlight $html "html" -}}
+    </div>
+    {{- if (ne $css "") -}}
+    <div class="code-pane css">
+      <span class="badge css">CSS</span>
+      {{- transform.Highlight $css "css" -}}
+    </div>
+    {{- end -}}
+    {{- if (ne $js "") -}}
+    <div class="code-pane js">
+      <span class="badge js">JS</span>
+      {{- transform.Highlight $js "js" -}}
+    </div>
+    {{- end -}}
+  </div>
+  <div class="preview">
+    <iframe sandbox="allow-scripts" loading="lazy" referrerpolicy="no-referrer" srcdoc="{{- $srcDoc -}}"></iframe>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+{{ define "main" }}
+
+{{ .Content }}
+
+{{/* Intro summary section */}}
+
+{{ if or .Site.Params.homeIntroTitle .Site.Params.homeIntroContent }}
+<div class="intro">
+    {{ with .Site.Params.homeIntroTitle }}
+    <h1>{{ . }}</h1>
+    {{ end }}
+
+    {{ with .Site.Params.homeIntroContent }}
+    <p>{{ . | markdownify }}</p>
+    {{ end }}
+</div>
+{{ end }}
+
+{{/* Social Icons */}}
+
+{{ with site.Params.social }}
+<div class="social-icons">
+    <script>
+        function copySecretToClipboard(e) {
+            e.preventDefault();
+            const secret = e.currentTarget.getAttribute("href").slice(1);
+            navigator.clipboard.writeText(secret).then(() => {
+                alert(`${secret}\n\nSecret copied to clipboard. Decode it to get link.\n\nHint: utools.sangeeth.dev`);
+            });
+        }
+    </script>
+    {{- range . }}
+    <a href="{{ trim .url " " | safeURL }}" target="_blank"
+        rel="noopener noreferrer me"
+        title="{{ (.title | default .name) | title }}"
+        {{ with .title }}aria-label="{{ . }}"{{end}}
+        {{ if eq .name "signal" }}onclick="copySecretToClipboard(event)"{{end}}
+        >
+        {{ partial "svg.html" . }}
+    </a>
+    {{- end }}
+</div>
+{{ end }}
+
+{{/* Collection Section */}}
+
+{{ if .Site.Params.homeCollection }}
+{{ range $i, $section := .Site.Params.homeSections }}
+<div class="home list-container">
+    <h2>{{ $section.title }}</h2>
+
+    <div class="list-grid">
+	    {{ $pages := where $.Site.RegularPages "Section" "eq" $section.id }}
+
+	    {{ range $index, $page := first $section.count $pages }}
+	    {{ partial "post-entry.html" $page}}
+	    {{ end }}
+
+	    <p class="line-date">…</p>
+	    <small><a href="{{ $.Site.BaseURL }}/{{ $section.id }}">See all</a></small>
+    </div>
+</div>
+{{ end }}
+{{ end }}
+
+{{ end }}

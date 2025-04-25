@@ -1,0 +1,8 @@
+<figure class="video-container">
+  <video {{ with .Get "height" }}height="{{ . }}"{{ end }} controls>
+    <source src="{{ .Get "src" }}#t=0.001" type="video/mp4">
+    
+    Uh-oh! Your browser can't play this video. Please use a newer version of your browser.
+  </video>
+  <figcaption class="caption-container">{{ .Get "caption" | markdownify }}</figcaption>
+</figure>
