@@ -1,4 +1,4 @@
-{{- if .IsHome -}}
+{{- if (or .IsHome .IsSection) -}}
   {{- with resources.GetMatch "images/og-image.{webp,png,jpg}" -}}
     {{- .RelPermalink -}}
   {{- end -}}
