@@ -1,9 +1,7 @@
-{{- if or .IsHome .IsSection -}}
+{{- if .IsHome -}}
   {{- with resources.GetMatch "images/og-image.{webp,png,jpg}" -}}
     {{- .RelPermalink -}}
   {{- end -}}
 {{- else -}}
-  {{- if .IsPage -}}
-    {{- printf "/api/og-image?url=%s" (.Permalink | urlquery) -}}
-  {{- end -}}
+  {{- printf "/api/og-image?url=%s" (.Permalink | urlquery) -}}
 {{- end -}}
