@@ -1,0 +1,32 @@
+#
+# NOTE: Because of the restrictions on what themes are allowed to configure, some of
+# the relevant config parameters like goldmark theme/allowing unsafe html is present
+# in my private content repo.
+#
+# Check this link for all the restrictions: https://gohugo.io/hugo-modules/theme-components/
+#
+
+[params]
+theme = 'auto'
+colorPalette = 'default'
+hideHeader = false
+
+# Lists parameters
+paginationSize = 100
+listSummaries = false
+listDateFormat = '2 Jan 2006'
+
+[params.breadcrumbs]
+enabled = true
+showCurrentPage = false
+home = "~"
+
+[[params.homeSections]]
+id = 'posts'
+title = "Posts"
+count = 10
+
+[[params.homeSections]]
+id = 'til'
+title = 'TILs'
+count = 10
