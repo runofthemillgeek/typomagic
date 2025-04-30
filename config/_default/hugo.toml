@@ -27,6 +27,6 @@ title = "Posts"
 count = 10
 
 [[params.homeSections]]
-id = 'til'
-title = 'TILs'
+id = 'notes'
+title = 'Notes'
 count = 10
