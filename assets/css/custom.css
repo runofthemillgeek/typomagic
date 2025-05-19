@@ -392,3 +392,8 @@ footer {
     max-height: none;
   }
 }
+
+figure .img-container {
+    /* FIXME: This should probably be upstream'd */
+    max-height: min(1px * var(--h), 90vh);
+}
