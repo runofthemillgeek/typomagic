@@ -397,3 +397,11 @@ figure .img-container {
     /* FIXME: This should probably be upstream'd */
     max-height: min(1px * var(--h), 90vh);
 }
+
+/*
+ * Iframe embed customizations
+ */
+ 
+ .bluesky-embed:has(iframe) {
+     margin-inline: auto;
+ }
