@@ -20,7 +20,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.header > .flex > .small {
+.header-menu > .small {
   font-size: 0.8rem;
 
   &:nth-last-child(1) {
