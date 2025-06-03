@@ -56,6 +56,9 @@
       {{- with $authorEmail }}<author>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</author>{{ end }}
       <guid>{{ .Permalink }}</guid>
       <description>{{ .Summary | transform.XMLEscape | safeHTML }}</description>
+      <image>
+        <url>{{ partial "head/og-image.html" . | strings.TrimSpace | absURL }}</url>
+      </image>
       <blog:og-image>{{ partial "head/og-image.html" . | strings.TrimSpace | absURL }}</blog:og-image>
       {{- with or .Description .Summary site.Params.description | plainify | htmlUnescape }}
         <blog:og-description>{{ trim . "\n\r\t " }}</blog:og-description>
