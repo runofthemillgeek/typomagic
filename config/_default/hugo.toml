@@ -24,9 +24,9 @@ home = "~"
 [[params.homeSections]]
 id = 'posts'
 title = "Posts"
-count = 10
+count = 5
 
 [[params.homeSections]]
 id = 'notes'
 title = 'Notes'
-count = 10
+count = 5
